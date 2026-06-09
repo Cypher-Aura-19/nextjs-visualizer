@@ -1,0 +1,596 @@
+{
+  "nodes": [
+    {
+      "id": "src/lib/markdownToHtml.ts",
+      "label": "markdownToHtml",
+      "type": "utility",
+      "filePath": "src/lib/markdownToHtml.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 3200, "y": 2400 }
+    },
+    {
+      "id": "src/lib/constants.ts",
+      "label": "constants",
+      "type": "utility",
+      "filePath": "src/lib/constants.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "EXAMPLE_PATH",
+        "CMS_NAME",
+        "HOME_OG_IMAGE_URL"
+      ],
+      "description": "",
+      "position": { "x": 3200, "y": 0 }
+    },
+    {
+      "id": "src/lib/api.ts",
+      "label": "api",
+      "type": "utility",
+      "filePath": "src/lib/api.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "getPostSlugs",
+        "getPostBySlug",
+        "getAllPosts"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 100 }
+    },
+    {
+      "id": "src/interfaces/post.ts",
+      "label": "post",
+      "type": "utility",
+      "filePath": "src/interfaces/post.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "Post"
+      ],
+      "description": "",
+      "position": { "x": 2400, "y": 0 }
+    },
+    {
+      "id": "src/interfaces/author.ts",
+      "label": "author",
+      "type": "utility",
+      "filePath": "src/interfaces/author.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "Author"
+      ],
+      "description": "",
+      "position": { "x": 3200, "y": 600 }
+    },
+    {
+      "id": "src/app/page.tsx",
+      "label": "page",
+      "type": "page",
+      "filePath": "src/app/page.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 0, "y": 600 }
+    },
+    {
+      "id": "src/app/layout.tsx",
+      "label": "layout",
+      "type": "layout",
+      "filePath": "src/app/layout.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default",
+        "metadata"
+      ],
+      "description": "",
+      "position": { "x": 0, "y": 1800 }
+    },
+    {
+      "id": "src/app/_components/theme-switcher.tsx",
+      "label": "theme-switcher",
+      "type": "client-component",
+      "filePath": "src/app/_components/theme-switcher.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "NoFOUCScript",
+        "ThemeSwitcher"
+      ],
+      "description": "",
+      "position": { "x": 800, "y": 1900 }
+    },
+    {
+      "id": "src/app/_components/section-separator.tsx",
+      "label": "section-separator",
+      "type": "server-component",
+      "filePath": "src/app/_components/section-separator.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "SectionSeparator"
+      ],
+      "description": "",
+      "position": { "x": 4000, "y": 3000 }
+    },
+    {
+      "id": "src/app/_components/post-title.tsx",
+      "label": "post-title",
+      "type": "server-component",
+      "filePath": "src/app/_components/post-title.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "PostTitle"
+      ],
+      "description": "",
+      "position": { "x": 3200, "y": 1800 }
+    },
+    {
+      "id": "src/app/_components/post-preview.tsx",
+      "label": "post-preview",
+      "type": "server-component",
+      "filePath": "src/app/_components/post-preview.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "PostPreview"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 400 }
+    },
+    {
+      "id": "src/app/_components/post-header.tsx",
+      "label": "post-header",
+      "type": "server-component",
+      "filePath": "src/app/_components/post-header.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "PostHeader"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 2100 }
+    },
+    {
+      "id": "src/app/_components/post-body.tsx",
+      "label": "post-body",
+      "type": "server-component",
+      "filePath": "src/app/_components/post-body.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "PostBody"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 2900 }
+    },
+    {
+      "id": "src/app/_components/more-stories.tsx",
+      "label": "more-stories",
+      "type": "server-component",
+      "filePath": "src/app/_components/more-stories.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "MoreStories"
+      ],
+      "description": "",
+      "position": { "x": 800, "y": 1000 }
+    },
+    {
+      "id": "src/app/_components/intro.tsx",
+      "label": "intro",
+      "type": "server-component",
+      "filePath": "src/app/_components/intro.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "Intro"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 1300 }
+    },
+    {
+      "id": "src/app/_components/hero-post.tsx",
+      "label": "hero-post",
+      "type": "server-component",
+      "filePath": "src/app/_components/hero-post.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "HeroPost"
+      ],
+      "description": "",
+      "position": { "x": 800, "y": 400 }
+    },
+    {
+      "id": "src/app/_components/header.tsx",
+      "label": "header",
+      "type": "server-component",
+      "filePath": "src/app/_components/header.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 3200 }
+    },
+    {
+      "id": "src/app/_components/footer.tsx",
+      "label": "footer",
+      "type": "server-component",
+      "filePath": "src/app/_components/footer.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default",
+        "Footer"
+      ],
+      "description": "",
+      "position": { "x": 800, "y": 2200 }
+    },
+    {
+      "id": "src/app/_components/date-formatter.tsx",
+      "label": "date-formatter",
+      "type": "server-component",
+      "filePath": "src/app/_components/date-formatter.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 3200, "y": 1200 }
+    },
+    {
+      "id": "src/app/_components/cover-image.tsx",
+      "label": "cover-image",
+      "type": "server-component",
+      "filePath": "src/app/_components/cover-image.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 2400, "y": 700 }
+    },
+    {
+      "id": "src/app/_components/container.tsx",
+      "label": "container",
+      "type": "server-component",
+      "filePath": "src/app/_components/container.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 2400, "y": 1800 }
+    },
+    {
+      "id": "src/app/_components/avatar.tsx",
+      "label": "avatar",
+      "type": "server-component",
+      "filePath": "src/app/_components/avatar.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 2400, "y": 350 }
+    },
+    {
+      "id": "src/app/_components/alert.tsx",
+      "label": "alert",
+      "type": "server-component",
+      "filePath": "src/app/_components/alert.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": "",
+      "position": { "x": 1600, "y": 2500 }
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx",
+      "label": "page",
+      "type": "page",
+      "filePath": "src/app/posts/[slug]/page.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default",
+        "generateMetadata",
+        "generateStaticParams"
+      ],
+      "description": "",
+      "position": { "x": 0, "y": 2500 }
+    }
+  ],
+  "edges": [
+    {
+      "id": "src/lib/api.ts--src/interfaces/post.ts",
+      "source": "src/lib/api.ts",
+      "target": "src/interfaces/post.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/interfaces/post.ts--src/interfaces/author.ts",
+      "source": "src/interfaces/post.ts",
+      "target": "src/interfaces/author.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/page.tsx--src/app/_components/hero-post.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/app/_components/hero-post.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/app/_components/intro.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/app/_components/intro.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/app/_components/more-stories.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/app/_components/more-stories.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/lib/api.ts",
+      "source": "src/app/page.tsx",
+      "target": "src/lib/api.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/page.tsx--src/app/_components/container.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/app/_components/container.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/layout.tsx--src/lib/constants.ts",
+      "source": "src/app/layout.tsx",
+      "target": "src/lib/constants.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/layout.tsx--src/app/_components/theme-switcher.tsx",
+      "source": "src/app/layout.tsx",
+      "target": "src/app/_components/theme-switcher.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/layout.tsx--src/app/_components/footer.tsx",
+      "source": "src/app/layout.tsx",
+      "target": "src/app/_components/footer.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-preview.tsx--src/interfaces/author.ts",
+      "source": "src/app/_components/post-preview.tsx",
+      "target": "src/interfaces/author.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/post-preview.tsx--src/app/_components/avatar.tsx",
+      "source": "src/app/_components/post-preview.tsx",
+      "target": "src/app/_components/avatar.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-preview.tsx--src/app/_components/cover-image.tsx",
+      "source": "src/app/_components/post-preview.tsx",
+      "target": "src/app/_components/cover-image.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-preview.tsx--src/app/_components/date-formatter.tsx",
+      "source": "src/app/_components/post-preview.tsx",
+      "target": "src/app/_components/date-formatter.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-header.tsx--src/app/_components/post-title.tsx",
+      "source": "src/app/_components/post-header.tsx",
+      "target": "src/app/_components/post-title.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-header.tsx--src/interfaces/author.ts",
+      "source": "src/app/_components/post-header.tsx",
+      "target": "src/interfaces/author.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/post-header.tsx--src/app/_components/avatar.tsx",
+      "source": "src/app/_components/post-header.tsx",
+      "target": "src/app/_components/avatar.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-header.tsx--src/app/_components/cover-image.tsx",
+      "source": "src/app/_components/post-header.tsx",
+      "target": "src/app/_components/cover-image.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/post-header.tsx--src/app/_components/date-formatter.tsx",
+      "source": "src/app/_components/post-header.tsx",
+      "target": "src/app/_components/date-formatter.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/more-stories.tsx--src/interfaces/post.ts",
+      "source": "src/app/_components/more-stories.tsx",
+      "target": "src/interfaces/post.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/more-stories.tsx--src/app/_components/post-preview.tsx",
+      "source": "src/app/_components/more-stories.tsx",
+      "target": "src/app/_components/post-preview.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/intro.tsx--src/lib/constants.ts",
+      "source": "src/app/_components/intro.tsx",
+      "target": "src/lib/constants.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/hero-post.tsx--src/interfaces/author.ts",
+      "source": "src/app/_components/hero-post.tsx",
+      "target": "src/interfaces/author.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/hero-post.tsx--src/app/_components/avatar.tsx",
+      "source": "src/app/_components/hero-post.tsx",
+      "target": "src/app/_components/avatar.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/hero-post.tsx--src/app/_components/cover-image.tsx",
+      "source": "src/app/_components/hero-post.tsx",
+      "target": "src/app/_components/cover-image.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/hero-post.tsx--src/app/_components/date-formatter.tsx",
+      "source": "src/app/_components/hero-post.tsx",
+      "target": "src/app/_components/date-formatter.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/footer.tsx--src/lib/constants.ts",
+      "source": "src/app/_components/footer.tsx",
+      "target": "src/lib/constants.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/footer.tsx--src/app/_components/container.tsx",
+      "source": "src/app/_components/footer.tsx",
+      "target": "src/app/_components/container.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/_components/alert.tsx--src/lib/constants.ts",
+      "source": "src/app/_components/alert.tsx",
+      "target": "src/lib/constants.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/_components/alert.tsx--src/app/_components/container.tsx",
+      "source": "src/app/_components/alert.tsx",
+      "target": "src/app/_components/container.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/lib/api.ts",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/lib/api.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/lib/constants.ts",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/lib/constants.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/app/_components/post-body.tsx",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/app/_components/post-body.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/app/_components/post-header.tsx",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/app/_components/post-header.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/lib/markdownToHtml.ts",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/lib/markdownToHtml.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/app/_components/alert.tsx",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/app/_components/alert.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/app/_components/container.tsx",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/app/_components/container.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/posts/[slug]/page.tsx--src/app/_components/header.tsx",
+      "source": "src/app/posts/[slug]/page.tsx",
+      "target": "src/app/_components/header.tsx",
+      "type": "render",
+      "label": "renders"
+    }
+  ],
+  "projectName": "blog-starter",
+  "analyzedAt": "2026-06-04T18:25:05.281Z",
+  "totalFiles": 24
+}

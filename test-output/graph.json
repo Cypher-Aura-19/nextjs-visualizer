@@ -1,0 +1,591 @@
+{
+  "nodes": [
+    {
+      "id": "src/types/graph.ts",
+      "label": "graph",
+      "type": "utility",
+      "filePath": "src/types/graph.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "NodeType",
+        "EdgeType",
+        "FileNode",
+        "GraphEdge",
+        "ProjectGraph",
+        "NODE_COLORS",
+        "NODE_LABELS"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/store/useGraph.ts",
+      "label": "useGraph",
+      "type": "hook",
+      "filePath": "src/store/useGraph.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "useGraph"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/store/GraphContext.tsx",
+      "label": "GraphContext",
+      "type": "client-component",
+      "filePath": "src/store/GraphContext.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "GraphProvider",
+        "GraphContext"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/lib/utils.ts",
+      "label": "utils",
+      "type": "utility",
+      "filePath": "src/lib/utils.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "cn"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/hooks/use-mobile.ts",
+      "label": "use-mobile",
+      "type": "hook",
+      "filePath": "src/hooks/use-mobile.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "useIsMobile"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/UploadPanel.tsx",
+      "label": "UploadPanel",
+      "type": "client-component",
+      "filePath": "src/components/UploadPanel.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "UploadPanel"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/Toolbar.tsx",
+      "label": "Toolbar",
+      "type": "client-component",
+      "filePath": "src/components/Toolbar.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "default"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/SidePanel.tsx",
+      "label": "SidePanel",
+      "type": "client-component",
+      "filePath": "src/components/SidePanel.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "default"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/app/page.tsx",
+      "label": "page",
+      "type": "page",
+      "filePath": "src/app/page.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/app/layout.tsx",
+      "label": "layout",
+      "type": "layout",
+      "filePath": "src/app/layout.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "default",
+        "metadata"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/tooltip.tsx",
+      "label": "tooltip",
+      "type": "client-component",
+      "filePath": "src/components/ui/tooltip.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "Tooltip",
+        "TooltipContent",
+        "TooltipProvider",
+        "TooltipTrigger"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/toggle.tsx",
+      "label": "toggle",
+      "type": "client-component",
+      "filePath": "src/components/ui/toggle.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "Toggle",
+        "toggleVariants"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/skeleton.tsx",
+      "label": "skeleton",
+      "type": "server-component",
+      "filePath": "src/components/ui/skeleton.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "Skeleton"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx",
+      "label": "sidebar",
+      "type": "client-component",
+      "filePath": "src/components/ui/sidebar.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "Sidebar",
+        "SidebarContent",
+        "SidebarFooter",
+        "SidebarGroup",
+        "SidebarGroupAction",
+        "SidebarGroupContent",
+        "SidebarGroupLabel",
+        "SidebarHeader",
+        "SidebarInput",
+        "SidebarInset",
+        "SidebarMenu",
+        "SidebarMenuAction",
+        "SidebarMenuBadge",
+        "SidebarMenuButton",
+        "SidebarMenuItem",
+        "SidebarMenuSkeleton",
+        "SidebarMenuSub",
+        "SidebarMenuSubButton",
+        "SidebarMenuSubItem",
+        "SidebarProvider",
+        "SidebarRail",
+        "SidebarSeparator",
+        "SidebarTrigger",
+        "useSidebar"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/sheet.tsx",
+      "label": "sheet",
+      "type": "client-component",
+      "filePath": "src/components/ui/sheet.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "Sheet",
+        "SheetTrigger",
+        "SheetClose",
+        "SheetContent",
+        "SheetHeader",
+        "SheetFooter",
+        "SheetTitle",
+        "SheetDescription"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/separator.tsx",
+      "label": "separator",
+      "type": "client-component",
+      "filePath": "src/components/ui/separator.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "Separator"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/input.tsx",
+      "label": "input",
+      "type": "server-component",
+      "filePath": "src/components/ui/input.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "Input"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/button.tsx",
+      "label": "button",
+      "type": "server-component",
+      "filePath": "src/components/ui/button.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "Button",
+        "buttonVariants"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/ui/badge.tsx",
+      "label": "badge",
+      "type": "server-component",
+      "filePath": "src/components/ui/badge.tsx",
+      "isClientComponent": false,
+      "isServerComponent": true,
+      "exports": [
+        "Badge",
+        "badgeVariants"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/graph/GraphCanvas.tsx",
+      "label": "GraphCanvas",
+      "type": "client-component",
+      "filePath": "src/components/graph/GraphCanvas.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "default"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/components/graph/CustomNode.tsx",
+      "label": "CustomNode",
+      "type": "client-component",
+      "filePath": "src/components/graph/CustomNode.tsx",
+      "isClientComponent": true,
+      "isServerComponent": false,
+      "exports": [
+        "default",
+        "nodeTypes"
+      ],
+      "description": ""
+    },
+    {
+      "id": "src/app/api/describe-node/route.ts",
+      "label": "route",
+      "type": "api-route",
+      "filePath": "src/app/api/describe-node/route.ts",
+      "isClientComponent": false,
+      "isServerComponent": false,
+      "exports": [
+        "POST"
+      ],
+      "description": ""
+    }
+  ],
+  "edges": [
+    {
+      "id": "src/store/useGraph.ts--src/store/GraphContext.tsx",
+      "source": "src/store/useGraph.ts",
+      "target": "src/store/GraphContext.tsx",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/UploadPanel.tsx--src/components/ui/button.tsx",
+      "source": "src/components/UploadPanel.tsx",
+      "target": "src/components/ui/button.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/UploadPanel.tsx--src/store/useGraph.ts",
+      "source": "src/components/UploadPanel.tsx",
+      "target": "src/store/useGraph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/Toolbar.tsx--src/components/ui/input.tsx",
+      "source": "src/components/Toolbar.tsx",
+      "target": "src/components/ui/input.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/Toolbar.tsx--src/components/ui/button.tsx",
+      "source": "src/components/Toolbar.tsx",
+      "target": "src/components/ui/button.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/Toolbar.tsx--src/store/useGraph.ts",
+      "source": "src/components/Toolbar.tsx",
+      "target": "src/store/useGraph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/Toolbar.tsx--src/types/graph.ts",
+      "source": "src/components/Toolbar.tsx",
+      "target": "src/types/graph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/SidePanel.tsx--src/components/ui/sheet.tsx",
+      "source": "src/components/SidePanel.tsx",
+      "target": "src/components/ui/sheet.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/SidePanel.tsx--src/components/ui/badge.tsx",
+      "source": "src/components/SidePanel.tsx",
+      "target": "src/components/ui/badge.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/SidePanel.tsx--src/components/ui/button.tsx",
+      "source": "src/components/SidePanel.tsx",
+      "target": "src/components/ui/button.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/SidePanel.tsx--src/store/useGraph.ts",
+      "source": "src/components/SidePanel.tsx",
+      "target": "src/store/useGraph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/SidePanel.tsx--src/types/graph.ts",
+      "source": "src/components/SidePanel.tsx",
+      "target": "src/types/graph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/page.tsx--src/store/useGraph.ts",
+      "source": "src/app/page.tsx",
+      "target": "src/store/useGraph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/app/page.tsx--src/components/UploadPanel.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/components/UploadPanel.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/components/graph/GraphCanvas.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/components/graph/GraphCanvas.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/components/SidePanel.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/components/SidePanel.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/page.tsx--src/components/Toolbar.tsx",
+      "source": "src/app/page.tsx",
+      "target": "src/components/Toolbar.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/app/layout.tsx--src/store/GraphContext.tsx",
+      "source": "src/app/layout.tsx",
+      "target": "src/store/GraphContext.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/tooltip.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/tooltip.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/toggle.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/toggle.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/skeleton.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/skeleton.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/hooks/use-mobile.ts",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/hooks/use-mobile.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/button.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/button.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/input.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/input.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/separator.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/separator.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/sheet.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/sheet.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/skeleton.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/skeleton.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sidebar.tsx--src/components/ui/tooltip.tsx",
+      "source": "src/components/ui/sidebar.tsx",
+      "target": "src/components/ui/tooltip.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/sheet.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/sheet.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/sheet.tsx--src/components/ui/button.tsx",
+      "source": "src/components/ui/sheet.tsx",
+      "target": "src/components/ui/button.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/ui/separator.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/separator.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/input.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/input.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/button.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/button.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/ui/badge.tsx--src/lib/utils.ts",
+      "source": "src/components/ui/badge.tsx",
+      "target": "src/lib/utils.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/graph/GraphCanvas.tsx--src/store/useGraph.ts",
+      "source": "src/components/graph/GraphCanvas.tsx",
+      "target": "src/store/useGraph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/graph/GraphCanvas.tsx--src/components/graph/CustomNode.tsx",
+      "source": "src/components/graph/GraphCanvas.tsx",
+      "target": "src/components/graph/CustomNode.tsx",
+      "type": "render",
+      "label": "renders"
+    },
+    {
+      "id": "src/components/graph/GraphCanvas.tsx--src/types/graph.ts",
+      "source": "src/components/graph/GraphCanvas.tsx",
+      "target": "src/types/graph.ts",
+      "type": "import-only",
+      "label": "imports"
+    },
+    {
+      "id": "src/components/graph/CustomNode.tsx--src/types/graph.ts",
+      "source": "src/components/graph/CustomNode.tsx",
+      "target": "src/types/graph.ts",
+      "type": "import-only",
+      "label": "imports"
+    }
+  ],
+  "projectName": "web",
+  "analyzedAt": "2026-06-04T18:18:51.721Z",
+  "totalFiles": 22
+}
