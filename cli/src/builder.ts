@@ -18,29 +18,42 @@ export async function buildGraph(projectPath: string): Promise<ProjectGraph> {
   const nodeMap = new Map<string, FileNode>();
 
   for (const filePath of filePaths) {
-    // Read file content
-    const fullPath = path.join(projectPath, filePath);
-    const content = await fs.readFile(fullPath, 'utf-8');
+    try {
+      // Read file content
+      const fullPath = path.join(projectPath, filePath);
+      
+      // Check if it's actually a file (not a directory)
+      const stat = await fs.stat(fullPath);
+      if (!stat.isFile()) {
+        continue;
+      }
 
-    // Classify the file
-    const { type, isClientComponent, isServerComponent } = classifyFile(filePath, content);
+      const content = await fs.readFile(fullPath, 'utf-8');
 
-    // Extract exports
-    const exports = extractExports(content);
+      // Classify the file
+      const { type, isClientComponent, isServerComponent } = classifyFile(filePath, content);
 
-    // Create FileNode
-    const node: FileNode = {
-      id: filePath,
-      label: path.basename(filePath, path.extname(filePath)),
-      type,
-      filePath,
-      isClientComponent,
-      isServerComponent,
-      exports,
-      description: '', // Will be filled in later
-    };
+      // Extract exports
+      const exports = extractExports(content);
 
-    nodeMap.set(filePath, node);
+      // Create FileNode
+      const node: FileNode = {
+        id: filePath,
+        label: path.basename(filePath, path.extname(filePath)),
+        type,
+        filePath,
+        isClientComponent,
+        isServerComponent,
+        exports,
+        description: '', // Will be filled in later
+      };
+
+      nodeMap.set(filePath, node);
+    } catch (error) {
+      // Skip files that can't be read (permissions, encoding issues, etc.)
+      console.warn(`[builder] Skipping ${filePath}: ${error instanceof Error ? error.message : 'unknown error'}`);
+      continue;
+    }
   }
 
   // STEP 3 — Extract all imports and build edges
@@ -50,73 +63,86 @@ export async function buildGraph(projectPath: string): Promise<ProjectGraph> {
   const edgeIdSet = new Set<string>();
 
   for (const filePath of filePaths) {
-    const fullPath = path.join(projectPath, filePath);
-    const content = await fs.readFile(fullPath, 'utf-8');
-
-    // Extract imports from this file
-    const imports = extractImports(content);
-
-    for (const importStatement of imports) {
-      // Resolve the import to find the real target file
-      const resolvedPath = await resolveImportPath(
-        importStatement.rawPath,
-        importStatement.importedNames,
-        filePath,
-        projectPath
-      );
-
-      // Skip if resolution failed
-      if (!resolvedPath) {
+    try {
+      const fullPath = path.join(projectPath, filePath);
+      
+      // Check if it's actually a file
+      const stat = await fs.stat(fullPath);
+      if (!stat.isFile()) {
         continue;
       }
 
-      // Skip if target is not in our node map (points outside project)
-      if (!nodeMap.has(resolvedPath)) {
-        continue;
+      const content = await fs.readFile(fullPath, 'utf-8');
+
+      // Extract imports from this file
+      const imports = extractImports(content);
+
+      for (const importStatement of imports) {
+        // Resolve the import to find the real target file
+        const resolvedPath = await resolveImportPath(
+          importStatement.rawPath,
+          importStatement.importedNames,
+          filePath,
+          projectPath
+        );
+
+        // Skip if resolution failed
+        if (!resolvedPath) {
+          continue;
+        }
+
+        // Skip if target is not in our node map (points outside project)
+        if (!nodeMap.has(resolvedPath)) {
+          continue;
+        }
+
+        // Determine edge type
+        const sourceExt = path.extname(filePath);
+        const targetExt = path.extname(resolvedPath);
+        const isSourceReact = sourceExt === '.tsx' || sourceExt === '.jsx';
+        const isTargetReact = targetExt === '.tsx' || targetExt === '.jsx';
+        const targetNode = nodeMap.get(resolvedPath);
+
+        let edgeType: GraphEdge['type'];
+        let label: string;
+
+        if (isSourceReact && isTargetReact) {
+          // React component rendering another React component
+          edgeType = 'render';
+          label = 'renders';
+        } else if (targetNode?.type === 'server-action') {
+          // Calling a server action
+          edgeType = 'call';
+          label = 'calls';
+        } else {
+          // Generic import
+          edgeType = 'import-only';
+          label = 'imports';
+        }
+
+        // Create edge with unique ID
+        const edgeId = `${filePath}--${resolvedPath}`;
+
+        // Skip if edge already exists (avoid duplicates)
+        if (edgeIdSet.has(edgeId)) {
+          continue;
+        }
+
+        const edge: GraphEdge = {
+          id: edgeId,
+          source: filePath,
+          target: resolvedPath,
+          type: edgeType,
+          label,
+        };
+
+        edges.push(edge);
+        edgeIdSet.add(edgeId);
       }
-
-      // Determine edge type
-      const sourceExt = path.extname(filePath);
-      const targetExt = path.extname(resolvedPath);
-      const isSourceReact = sourceExt === '.tsx' || sourceExt === '.jsx';
-      const isTargetReact = targetExt === '.tsx' || targetExt === '.jsx';
-      const targetNode = nodeMap.get(resolvedPath);
-
-      let edgeType: GraphEdge['type'];
-      let label: string;
-
-      if (isSourceReact && isTargetReact) {
-        // React component rendering another React component
-        edgeType = 'render';
-        label = 'renders';
-      } else if (targetNode?.type === 'server-action') {
-        // Calling a server action
-        edgeType = 'call';
-        label = 'calls';
-      } else {
-        // Generic import
-        edgeType = 'import-only';
-        label = 'imports';
-      }
-
-      // Create edge with unique ID
-      const edgeId = `${filePath}--${resolvedPath}`;
-
-      // Skip if edge already exists (avoid duplicates)
-      if (edgeIdSet.has(edgeId)) {
-        continue;
-      }
-
-      const edge: GraphEdge = {
-        id: edgeId,
-        source: filePath,
-        target: resolvedPath,
-        type: edgeType,
-        label,
-      };
-
-      edges.push(edge);
-      edgeIdSet.add(edgeId);
+    } catch (error) {
+      // Skip files that can't be read
+      console.warn(`[builder] Skipping ${filePath} during edge building: ${error instanceof Error ? error.message : 'unknown error'}`);
+      continue;
     }
   }
 
