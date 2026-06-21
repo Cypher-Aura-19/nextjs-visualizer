@@ -4,6 +4,216 @@ An interactive graph-based explorer for Next.js projects. Run the CLI against an
 
 ---
 
+## How It Works
+
+This tool has three main phases: **CLI Analysis**, **Web Visualization**, and **AI Analysis**. Here's what happens behind the scenes.
+
+### Phase 1: CLI Analysis (Generating the Graph)
+
+When you run the CLI, it analyzes your Next.js project and creates a complete dependency graph saved as `graph.json`.
+
+**Step-by-step:**
+
+1. **Walk the file tree** (`walker.ts`)
+   - Recursively scans your project directory
+   - Finds all `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs` files
+   - Skips `node_modules`, `.next`, and other ignored folders
+
+2. **Classify every file** (`classifier.ts`)
+   - Determines the role of each file based on its path and structure
+   - Types include: `page`, `layout`, `component`, `api-route`, `hook`, `util`, `config`, `middleware`, etc.
+   - Uses file location patterns (e.g., `app/**/page.tsx` → page route)
+
+3. **Extract imports and exports** (`parser.ts`)
+   - Reads each file's source code
+   - Uses regex to find all `import` and `export` statements
+   - Captures both named imports (`import { Button }`) and default imports (`import Button`)
+   - Tracks what each file exports (components, functions, types)
+
+4. **Resolve import paths** (`resolver.ts`)
+   - Converts relative imports (`../../components/Button`) to absolute file paths
+   - Handles Next.js aliases like `@/components` → `src/components`
+   - Resolves npm packages and marks them as external dependencies
+   - Builds the actual connections between files
+
+5. **Build the graph** (`builder.ts`)
+   - Creates a `ProjectGraph` object with:
+     - **nodes**: array of every file with metadata (id, path, type, imports, exports)
+     - **edges**: array of connections showing which files import which
+     - **stats**: total counts by node type
+   - Assigns unique IDs to each file
+
+6. **Write to disk** (`writer.ts`)
+   - Serializes the graph as `graph.json`
+   - This JSON file contains the complete dependency map
+
+**Output:** A single `graph.json` file that captures your entire project structure.
+
+---
+
+### Phase 2: Web Visualization (Rendering the Graph)
+
+When you upload `graph.json` to the web app, it transforms the raw data into an interactive visual graph.
+
+**Step-by-step:**
+
+1. **Upload** (`UploadPanel.tsx`)
+   - User drags `graph.json` into the landing screen
+   - File is parsed and validated as JSON
+
+2. **Store in global state** (`useExplorer.ts` — Zustand store)
+   - Parsed graph is saved in the app's global state
+   - All components can now access the graph data
+   - State includes: nodes, edges, clusters, filters, selected node, etc.
+
+3. **Cluster the nodes** (`clustering.ts`)
+   - Groups files by their directory path
+   - Example: all files in `src/components/` become one cluster
+   - Each cluster gets a background "bubble" node for visual grouping
+
+4. **Compute the layout** (`elkLayout.ts` + `dagre`)
+   - Uses **ELK** (Eclipse Layout Kernel) to position nodes automatically
+   - Algorithm: hierarchical top-down layout with clustering
+   - Assigns (x, y) coordinates to every node and cluster
+   - Routes edges between nodes with smooth curves
+
+5. **Render with ReactFlow** (`GraphCanvas.tsx`)
+   - ReactFlow is the rendering engine — handles zoom, pan, drag, selection
+   - Custom node components:
+     - `CustomNode.tsx` — renders each file as a colored box (color = file type)
+     - `ClusterNode.tsx` — renders directory bubbles as transparent backgrounds
+   - Custom edge component:
+     - `FlowEdge.tsx` — animated lines showing import relationships
+   - User can click nodes to select them, drag to reposition, zoom/pan to explore
+
+6. **User interaction**
+   - **Click a node** → `SidePanel.tsx` opens on the right
+   - **Details tab** — shows file path, type, line count, imports/exports
+   - **Dependencies tab** — lists all incoming and outgoing edges
+   - **AI Analysis tab** — initially empty, shows "Run Analysis" button
+
+**Rendering Stack:**
+- **@xyflow/react** — graph visualization library
+- **elkjs** — automatic layout algorithm
+- **Zustand** — state management (stores graph + UI state)
+- **Tailwind CSS v4** — styling
+
+---
+
+### Phase 3: AI Analysis (Understanding a Node)
+
+When you click "Run Analysis" in the AI tab, the app sends the node's data to an AI model to get a structured description.
+
+**Step-by-step:**
+
+1. **Trigger analysis** (button click in `SidePanel.tsx`)
+   - User clicks "Run Analysis" on a selected node
+   - Frontend calls `POST /api/describe-node` with the node's data
+
+2. **API route receives request** (`app/api/describe-node/route.ts`)
+   - Next.js API route handler processes the request
+   - Extracts: file path, type, source code, imports, exports
+
+3. **Construct the prompt**
+   - Builds a structured prompt asking the AI to analyze the file
+   - Includes the node's actual source code (first 1500 characters if too long)
+   - Requests JSON output with specific fields:
+     - `responsibilities` — what this file does
+     - `dataFlow` — where data comes from and goes to
+     - `patterns` — React patterns, architectural patterns used
+     - `sideEffects` — mutations, API calls, side effects
+     - `recommendations` — improvements, refactors, best practices
+
+4. **Call AI model** (Groq API — primary)
+   - Sends prompt to **Groq** with model `llama3-70b-8192`
+   - Groq is extremely fast (~1-2 seconds for analysis)
+   - **Fallback:** if Groq fails or key is missing, tries **Gemini Flash** (`gemini-1.5-flash-latest`)
+   - Temperature set low (0.2) for consistent structured output
+
+5. **Parse the response** (`AI_WORKFLOW.md` details)
+   - AI returns JSON wrapped in markdown code fences
+   - Parser strips markdown formatting (`'''json` blocks)
+   - Handles common errors: trailing commas, missing brackets
+   - Validates required fields
+
+6. **Return to frontend**
+   - API route sends parsed JSON back to `SidePanel.tsx`
+   - Component renders each section:
+     - **Responsibilities** — bullet list of main duties
+     - **Data Flow** — inputs/outputs diagram
+     - **Patterns** — detected patterns with descriptions
+     - **Side Effects** — list of mutations/effects
+     - **Recommendations** — suggestions for improvement
+
+**AI Stack:**
+- **Groq API** (primary) — ultra-fast LLM inference (`llama3-70b-8192`)
+- **Gemini API** (fallback) — Google's `gemini-1.5-flash-latest` model
+- **Structured JSON prompts** — forces consistent output format
+- **Error-tolerant parsing** — handles malformed JSON gracefully
+
+---
+
+### Complete Data Flow
+
+```
+CLI Phase:
+  Source Code → walker → classifier → parser → resolver → builder → writer → graph.json
+
+Web Phase:
+  graph.json → Upload → Zustand store → clusterGraph → elkLayout → ReactFlow → Visual Graph
+
+AI Phase:
+  Click node → POST /api/describe-node → Build prompt → Groq API → Parse JSON → Render in SidePanel
+```
+
+---
+
+### Tech Stack Summary
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **CLI** | TypeScript + ts-node | Static analysis and graph generation |
+| **Web Framework** | Next.js 16 (App Router) | React server + client components |
+| **Graph Rendering** | @xyflow/react v12 | Interactive node graph UI |
+| **Layout Engine** | elkjs + dagre | Automatic graph layout algorithm |
+| **State Management** | Zustand | Global app state (graph, filters, selection) |
+| **AI (Primary)** | Groq API | Fast LLM inference (`llama3-70b-8192`) |
+| **AI (Fallback)** | Gemini Flash | Google's lightweight model |
+| **Styling** | Tailwind CSS v4 | Utility-first CSS framework |
+| **Storage** | Supabase (optional) | Database for saving graphs (not fully implemented) |
+
+---
+
+### What Happens When You...
+
+**Upload a graph file:**
+1. JSON is parsed and validated
+2. Stored in Zustand state
+3. Nodes are clustered by directory
+4. ELK computes positions
+5. ReactFlow renders the graph
+
+**Click a node:**
+1. Node is selected in state
+2. SidePanel opens on the right
+3. Details and Dependencies tabs populate immediately
+4. AI Analysis tab shows "Run Analysis" button
+
+**Run AI analysis:**
+1. API route receives node data
+2. Prompt is constructed with source code
+3. Groq API processes the request (~1-2 seconds)
+4. Response is parsed and validated
+5. Results render in the AI Analysis tab
+
+**Filter by node type:**
+1. Toggle filter in LeftSidebar
+2. Zustand state updates
+3. ReactFlow re-renders with filtered nodes
+4. Hidden nodes fade out or disappear
+
+---
+
 ## Requirements
 
 - **Node.js** v18 or higher
